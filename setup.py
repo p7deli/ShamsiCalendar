@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="ShamsiCalendar",
-    version="0.1.1",
+    version="0.1.2",
     author="Poriya Delavariyan",
     author_email="poria.dell7@gmail.com",
     description="Persian (Shamsi) Calendar and Date Entry for Python Tkinter",
