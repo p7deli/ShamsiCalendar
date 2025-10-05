@@ -170,4 +170,5 @@ class ShamsiDateEntry(tk.Frame):
         self.close_popup()
 
     def get(self):
-        return self.var.get()
+        str_date = self.var.get().split('-')
+        return jdatetime.date(int(str_date[0]), int(str_date[1]), int(str_date[2]))

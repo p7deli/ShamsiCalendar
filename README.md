@@ -21,14 +21,6 @@
 pip install ShamsiCalendar
 ```
 
-> برای تست قبل از انتشار اصلی، می‌توانید از Test PyPI استفاده کنید:
-
-```bash
-pip install --index-url https://test.pypi.org/simple/ ShamsiCalendar
-```
-
----
-
 ## استفاده از ShamsiCalendar
 
 ```python

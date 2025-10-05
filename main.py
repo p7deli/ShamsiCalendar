@@ -5,7 +5,7 @@ from shamsicalendar import ShamsiCalendar
 WIDTH, HEIGHT = 500, 500
 
 def show_value():
-    lbl_show_date.configure(text=f'Date: {date_entry.get()}')
+    lbl_show_date.configure(text=f'Date: {str(date_entry.get())}')
 
 app = tk.Tk()
 
