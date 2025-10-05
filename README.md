@@ -65,9 +65,8 @@ root.mainloop()
 
 ---
 
-## مجوز
+## عکس<img width="1366" height="768" alt="Screenshot (254)" src="https://github.com/user-attachments/assets/03bc53d5-070c-4674-b5fc-d65104730ecd" />
 
-این پروژه تحت **MIT License** منتشر شده است.
 
 ---
 
