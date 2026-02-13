@@ -29,6 +29,10 @@ class ShamsiCalendar(tk.Frame):
                                     width=6, textvariable=self.year_var,
                                     command=self.change_year, relief="flat")
         self.year_spin.pack(side="left", padx=5)
+        self.year_spin.bind("<Return>", self.on_year_enter)
+
+        self.error_label = tk.Label(self.header_frame, text="", font=("Tahoma", 9), bg="#f0f0f0", fg="red")
+        self.error_label.pack(side="left", padx=5)
 
         self.next_btn = tk.Button(self.header_frame, text="▶", command=self.next_month, width=3, relief="flat", bg="#e0e0e0")
         self.next_btn.pack(side="left", padx=2)
@@ -120,18 +124,41 @@ class ShamsiCalendar(tk.Frame):
 
     def change_year(self):
         try:
-            self.year = int(self.year_var.get())
+            year = int(self.year_var.get())
+            if year < 1300 or year > 1500:
+                self.error_label.config(text="سال باید بین 1300 و 1500 باشد")
+                self.year_var.set(self.year)
+                return
+            self.year = year
+            self.error_label.config(text="")
             self.draw_calendar()
         except ValueError:
-            pass
+            self.error_label.config(text="لطفاً یک عدد معتبر وارد کنید")
+            self.year_var.set(self.year)
+
+    def on_year_enter(self, event):
+        try:
+            year = int(self.year_var.get())
+            if year < 1300 or year > 1500:
+                self.error_label.config(text="سال باید بین 1300 و 1500 باشد")
+                self.year_var.set(self.year)
+                return
+            self.year = year
+            self.error_label.config(text="")
+            self.draw_calendar()
+        except ValueError:
+            self.error_label.config(text="لطفاً یک عدد معتبر وارد کنید")
+            self.year_var.set(self.year)
 
 
 class ShamsiDateEntry(tk.Frame):
-    def __init__(self, master=None, **kwargs):
+    def __init__(self, master=None, width_entry=15, **kwargs):
         super().__init__(master, **kwargs)
         self.var = tk.StringVar()
+        today = jdatetime.date.today()
+        self.var.set(today)
 
-        self.entry = tk.Entry(self, textvariable=self.var, width=15, relief="groove", font=("Tahoma", 10), justify='center')
+        self.entry = tk.Entry(self, textvariable=self.var, width=width_entry, relief="groove", font=("Tahoma", 10), justify='center')
         self.entry.pack(side="left", ipady=2)
 
         self.btn = tk.Button(self, text="▼", width=2, command=self.toggle_calendar, relief="flat", bg="#e0e0e0")
